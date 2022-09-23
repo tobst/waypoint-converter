@@ -34,13 +34,13 @@ imagedata='iVBORw0KGgoAAAANSUhEUgAAAMgAAAB/CAYAAACql41TAAAAAXNSR0IArs4c6QAAAARzQ
 
 parser = argparse.ArgumentParser()
 parser.add_argument("inputfile", type=str, nargs='+', help = "(one ore more) DroneHarmony wpt CSV input file(s)")
-parser.add_argument("-o", help = "Output json file. Written to stdout if omitted")
+parser.add_argument("-o", help = "Output json file. Written to default directory (current time since epoch in millies) if omitted")
 parser.add_argument("-t", type=float, default = 0.0, help = "Height offset added to CSV height")
 parser.add_argument("-m", type=int, default = 1, help = "Multiply every waypoint this many times")
 parser.add_argument("-i", action="store_true", help = "Generate an image for each index")
-parser.add_argument("-p", type=float, default = -45.0, help = "Gimpal pitch")
-parser.add_argument("-s", type=int, default = 1, help = "Number of altitude steps")
-parser.add_argument("-dh", type=float, default = 2, help = "Altitude delta between steps")
+parser.add_argument("-p", type=float, help = "Gimpal pitch")
+parser.add_argument("-s", type=int, default = 1, help = "Number of altitude steps, will create multiple files with altitude incremented by dh")
+parser.add_argument("-dh", type=float, default = 2, help = "Altitude delta for creation of multiple files")
 
 
 args = parser.parse_args()
@@ -85,7 +85,10 @@ while j <= args.s:
 				wpt["py"] = 0.0
 				wpt["pz"] = 0.0
 				wpt["height"] = float(row[altitude_index])
-				wpt["gimbal_pitch"] = args.p #float(row[6])
+				if args.p == None:
+					wpt["gimbal_pitch"] = float(row[pitch_index])
+				else:
+					wpt["gimbal_pitch"] = args.p
 				wpt["gimbal_roll"] = 0.0
 				wpt["gimbal_yaw"] = float(row[azimuth_index])
 				wpt["longitude"] = float(row[longitude_index]) * math.pi/180
