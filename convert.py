@@ -101,7 +101,7 @@ while j <= args.s:
 		print("Read " + str(filewpts) + " WPTs from " + inputfile, file=sys.stderr)
 
 	outstruct = {}
-	outstruct["name"] = Path(inputfile).stem + "_ofs_" + str(int(args.t)+deltah) + "m" + "_pitch_" + str(int(args.p))
+	outstruct["name"] = Path(inputfile).stem + "_ofs_" + str(int(args.t)+deltah) + "m" # + "_pitch_" + str(int(args.p))
 	outstruct["date"] = currtime
 	outstruct["forward"] = True
 	outstruct["interval"] = 20
