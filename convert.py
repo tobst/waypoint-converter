@@ -43,7 +43,7 @@ parser.add_argument("-s", type=int, default = 1, help = "Number of altitude step
 parser.add_argument("-dh", type=float, default = 2, help = "Altitude delta [m] for creation of multiple files")
 parser.add_argument("-int", type=int, default = 20, help = "Interval between single pictures [s/10], with a fixed duration, this should have influence on the speed of the mission")
 parser.add_argument("-dur", type=int, default = 30, help = "Duration of the timelapse [s/10] with 25fps, 210 will result in 21s video and 525 pictures")
-parser.add_argument("-maxl", type=int, default = 2000, help = "Maximum length of track [m], will be split into multiple files")
+parser.add_argument("-maxl", type=int, default = 2000, help = "target length of track [m], will be split into multiple files")
 parser.add_argument("-ignf", type=bool, default = False, help = "Ignore first waypoint")
 parser.add_argument("-ignl", type=bool, default = False, help = "Ignore last waypoint")
 
