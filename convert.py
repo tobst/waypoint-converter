@@ -129,6 +129,12 @@ while j <= args.s:
 
 	num_track=1
 	for shortened_wpts in wpts_out:
+		currtime = int(time.time()*1000)
+		filenameprefix = str(currtime)
+		foldername = folderprefix+filenameprefix
+		os.makedirs(foldername)
+		filename= filenameprefix+".json"
+
 		outstruct = {}
 		outstruct["name"] = Path(inputfile).stem + "_o" + str(int(args.t)+deltah) + "_i" + str(args.int) + "_d" + str(args.dur) + "_n" + str(num_track)# + "_pitch_" + str(int(args.p))
 		outstruct["date"] = currtime
@@ -138,11 +144,7 @@ while j <= args.s:
 		outstruct["list"] = shortened_wpts
 		outstruct["hash"] ="25B9CCE9B38D64CED21DC4213C6E3D2F"
 
-		currtime = int(time.time()*1000)
-		filenameprefix = str(currtime)
-		foldername = folderprefix+filenameprefix
-		os.makedirs(foldername)
-		filename= filenameprefix+".json"
+
 
 		print("Number of WPTs written: " + str(len(shortened_wpts)) + " (multiply used: " + str(args.m) +")", file=sys.stderr)
 
